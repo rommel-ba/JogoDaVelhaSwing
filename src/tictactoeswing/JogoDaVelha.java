@@ -5,6 +5,7 @@
  */
 package tictactoeswing;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,159 +16,160 @@ public class JogoDaVelha extends javax.swing.JFrame {
 
     private boolean Jogado1Ativo = true;
     private boolean Jogado2Ativo = false;
-    
+
     public JogoDaVelha() {
+        sub = new JediSubscriber();
+        sub.setupSubscriber();
+        pub = new JediPublisher();
+        pub.setupPublisher();
         initComponents();
+        System.out.println(B1.getName());
     }
 
-   /*
+    /*
       * Jogador somente clica uma vez para inserir o seu símbolo.
       * Segundo clique mostra o outro símbolo
-    */
+     */
     public void JogadorAtivo() {
-        if (Jogado1Ativo == true){
+        if (Jogado1Ativo == true) {
             Jogado1Ativo = false;
             Jogado2Ativo = true;
         } else {
             Jogado1Ativo = true;
             Jogado2Ativo = false;
         }
-        
+
         JogadorVencedor("X");
         JogadorVencedor("O");
     }
-    
-    public void JogadorVencedor(String Jogador){
-        
+
+    public void JogadorVencedor(String Jogador) {
+
         //Verificação de linhas (horizontal)
-        if (B1.getText().equals(Jogador) &&
-                B2.getText().equals(Jogador) &&
-                B3.getText().equals(Jogador)) {
-            
-            if (B1.getText().equals("X")){
+        if (B1.getText().equals(Jogador)
+                && B2.getText().equals(Jogador)
+                && B3.getText().equals(Jogador)) {
+
+            if (B1.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
-        if (B4.getText().equals(Jogador) &&
-                B5.getText().equals(Jogador) &&
-                B6.getText().equals(Jogador)) {
-            
-            if (B4.getText().equals("X")){
+
+        if (B4.getText().equals(Jogador)
+                && B5.getText().equals(Jogador)
+                && B6.getText().equals(Jogador)) {
+
+            if (B4.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
-        if (B7.getText().equals(Jogador) &&
-                B8.getText().equals(Jogador) &&
-                B9.getText().equals(Jogador)) {
-            
-            if (B7.getText().equals("X")){
+
+        if (B7.getText().equals(Jogador)
+                && B8.getText().equals(Jogador)
+                && B9.getText().equals(Jogador)) {
+
+            if (B7.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
+
         // Verificação vertical
-        
-        if (B1.getText().equals(Jogador) &&
-                B4.getText().equals(Jogador) &&
-                B7.getText().equals(Jogador)) {
-            
-            if (B1.getText().equals("X")){
+        if (B1.getText().equals(Jogador)
+                && B4.getText().equals(Jogador)
+                && B7.getText().equals(Jogador)) {
+
+            if (B1.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
-        if (B2.getText().equals(Jogador) &&
-                B5.getText().equals(Jogador) &&
-                B8.getText().equals(Jogador)) {
-            
-            if (B2.getText().equals("X")){
+
+        if (B2.getText().equals(Jogador)
+                && B5.getText().equals(Jogador)
+                && B8.getText().equals(Jogador)) {
+
+            if (B2.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
-        if (B3.getText().equals(Jogador) &&
-                B6.getText().equals(Jogador) &&
-                B9.getText().equals(Jogador)) {
-            
-            if (B3.getText().equals("X")){
+
+        if (B3.getText().equals(Jogador)
+                && B6.getText().equals(Jogador)
+                && B9.getText().equals(Jogador)) {
+
+            if (B3.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
+
         // Verificação diagonal
-        
-        if (B1.getText().equals(Jogador) &&
-                B5.getText().equals(Jogador) &&
-                B9.getText().equals(Jogador)) {
-            
-            if (B1.getText().equals("X")){
+        if (B1.getText().equals(Jogador)
+                && B5.getText().equals(Jogador)
+                && B9.getText().equals(Jogador)) {
+
+            if (B1.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
-        if (B7.getText().equals(Jogador) &&
-                B5.getText().equals(Jogador) &&
-                B3.getText().equals(Jogador)) {
-            
-            if (B7.getText().equals("X")){
+
+        if (B7.getText().equals(Jogador)
+                && B5.getText().equals(Jogador)
+                && B3.getText().equals(Jogador)) {
+
+            if (B7.getText().equals("X")) {
                 Vencedor("Jogador 1");
-            }           
-            else
+            } else {
                 Vencedor("Jogador 2");
+            }
         }
-        
+
         //Verificação de empate
-        
-        if(!B1.getText().equals("") &&
-              !B2.getText().equals("") &&
-              !B3.getText().equals("") &&
-              !B4.getText().equals("") &&
-              !B5.getText().equals("") &&
-              !B6.getText().equals("") &&
-              !B7.getText().equals("") &&
-              !B8.getText().equals("") &&
-              !B9.getText().equals("") ){
-            
+        if (!B1.getText().equals("")
+                && !B2.getText().equals("")
+                && !B3.getText().equals("")
+                && !B4.getText().equals("")
+                && !B5.getText().equals("")
+                && !B6.getText().equals("")
+                && !B7.getText().equals("")
+                && !B8.getText().equals("")
+                && !B9.getText().equals("")) {
+
             Vencedor("Empate");
-        
+
         }
-        
-       
+
     }
-    
-    public void Vencedor(String JogadorVencedor){
-        if (JogadorVencedor.equals("Jogador 1")){
+
+    public void Vencedor(String JogadorVencedor) {
+        if (JogadorVencedor.equals("Jogador 1")) {
             JOptionPane.showMessageDialog(null, "Parabéns, Jogador 1");
             LimparCampos();
-            
-        } else if(JogadorVencedor.equals("Jogador 2")){
+
+        } else if (JogadorVencedor.equals("Jogador 2")) {
             JOptionPane.showMessageDialog(null, "Parabéns, Jogador 2");
             LimparCampos();
         }
-        
-        if(JogadorVencedor.equals("Empate")){
+
+        if (JogadorVencedor.equals("Empate")) {
             JOptionPane.showMessageDialog(null, "Empate!");
             LimparCampos();
         }
     }
-    
-    public void LimparCampos(){
+
+    public void LimparCampos() {
         B1.setText("");
         B2.setText("");
         B3.setText("");
@@ -177,12 +179,12 @@ public class JogoDaVelha extends javax.swing.JFrame {
         B7.setText("");
         B8.setText("");
         B9.setText("");
-        
+
         Jogado1Ativo = true;
         Jogado2Ativo = false;
-        
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -217,6 +219,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         B7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B7.setName("B7"); // NOI18N
         B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B7ActionPerformed(evt);
@@ -224,6 +227,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B1.setName("B1"); // NOI18N
         B1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B1ActionPerformed(evt);
@@ -231,6 +235,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B6.setName("B6"); // NOI18N
         B6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B6ActionPerformed(evt);
@@ -238,6 +243,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B2.setName("B2"); // NOI18N
         B2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B2ActionPerformed(evt);
@@ -245,6 +251,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B4.setName("B4"); // NOI18N
         B4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B4ActionPerformed(evt);
@@ -252,6 +259,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B3.setName("B3"); // NOI18N
         B3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B3ActionPerformed(evt);
@@ -259,6 +267,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B5.setName("B5"); // NOI18N
         B5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B5ActionPerformed(evt);
@@ -266,6 +275,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B9.setName("B9"); // NOI18N
         B9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B9ActionPerformed(evt);
@@ -273,6 +283,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
         });
 
         B8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        B8.setName("B8"); // NOI18N
         B8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B8ActionPerformed(evt);
@@ -312,20 +323,20 @@ public class JogoDaVelha extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(B2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(B6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(B5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(B9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -404,7 +415,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -429,18 +440,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B1ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B1.getText().equals("")){
-                B1.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B1.getText().equals("")){
-                B1.setText("O");
-                JogadorAtivo();
-            }
-        }
-        
+        jogada(B1);
     }//GEN-LAST:event_B1ActionPerformed
 
     private void NovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoJogoActionPerformed
@@ -452,118 +452,68 @@ public class JogoDaVelha extends javax.swing.JFrame {
     }//GEN-LAST:event_SairDoJogoActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B3.getText().equals("")){
-                B3.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B3.getText().equals("")){
-                B3.setText("O");
-                JogadorAtivo();
-            }
-            
-        }      
+        jogada(B3);
     }//GEN-LAST:event_B3ActionPerformed
 
-    
+
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B2.getText().equals("")){
-                B2.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B2.getText().equals("")){
-                B2.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B2);
     }//GEN-LAST:event_B2ActionPerformed
 
     private void B4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B4ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B4.getText().equals("")){
-                B4.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B4.getText().equals("")){
-                B4.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B4);
     }//GEN-LAST:event_B4ActionPerformed
 
     private void B5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B5ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B5.getText().equals("")){
-                B5.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B5.getText().equals("")){
-                B5.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B5);
     }//GEN-LAST:event_B5ActionPerformed
 
     private void B6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B6ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B6.getText().equals("")){
-                B6.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B6.getText().equals("")){
-                B6.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B6);
     }//GEN-LAST:event_B6ActionPerformed
 
     private void B7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B7ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B7.getText().equals("")){
-                B7.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B7.getText().equals("")){
-                B7.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B7);
     }//GEN-LAST:event_B7ActionPerformed
 
     private void B8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B8ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B8.getText().equals("")){
-                B8.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B8.getText().equals("")){
-                B8.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B8);
     }//GEN-LAST:event_B8ActionPerformed
 
     private void B9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B9ActionPerformed
-        if (Jogado1Ativo == true){
-            if (B9.getText().equals("")){
-                B9.setText("X");
-                JogadorAtivo();
-            }
-        } else{
-            if (B9.getText().equals("")){
-                B9.setText("O");
-                JogadorAtivo();
-            }
-        }
+        jogada(B9);
     }//GEN-LAST:event_B9ActionPerformed
+
+    private void jogada(JButton botao) {
+        if (Jogado1Ativo == true) {
+            if (botao.getText().equals("")) {
+                botao.setText("X");
+                pub.postar("canal", botao.getName());
+                JogadorAtivo();
+
+            }
+        } else if (botao.getText().equals("")) {
+            botao.setText("O");
+            pub.postar("canal", botao.getName());
+            JogadorAtivo();
+        }
+    }
+
+    private void threadSub() {
+        sub.setupSubscriber();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+//                System.out.println("Teste Thread");
+                while (true) {
+                    String msg = sub.getMsg();
+                    System.out.println(msg);
+                }
+            }
+        });
+        t.setDaemon(true);
+        t.start();
+    }
 
     /**
      * @param args the command line arguments
@@ -620,5 +570,6 @@ public class JogoDaVelha extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
-
+    private JediPublisher pub;
+    private JediSubscriber sub;
 }
