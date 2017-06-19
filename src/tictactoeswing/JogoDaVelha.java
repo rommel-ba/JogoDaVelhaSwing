@@ -500,47 +500,47 @@ public class JogoDaVelha extends javax.swing.JFrame {
         jogada(B9);
     }//GEN-LAST:event_B9ActionPerformed
 
-    private void marcarBotao(String botao){
-        switch (botao){
-            case"B1":{
+    private void marcarBotao(String botao) {
+        switch (botao) {
+            case "B1": {
                 jogada(B1);
                 break;
             }
-            case"B2":{
+            case "B2": {
                 jogada(B2);
                 break;
             }
-            case"B3":{
+            case "B3": {
                 jogada(B3);
                 break;
             }
-            case"B4":{
+            case "B4": {
                 jogada(B4);
                 break;
             }
-            case"B5":{
+            case "B5": {
                 jogada(B5);
                 break;
             }
-            case"B6":{
+            case "B6": {
                 jogada(B6);
                 break;
             }
-            case"B7":{
+            case "B7": {
                 jogada(B7);
                 break;
             }
-            case"B8":{
+            case "B8": {
                 jogada(B8);
                 break;
             }
-            case"B9":{
+            case "B9": {
                 jogada(B9);
                 break;
             }
         }
     }
-    
+
     private void jogada(JButton botao) {
         if (Jogador1Ativo == true) {
             if (botao.getText().equals("")) {
@@ -553,15 +553,11 @@ public class JogoDaVelha extends javax.swing.JFrame {
         } else if (botao.getText().equals("")) {
             botao.setText("O");
             botao.setEnabled(false);
-            json.put("jogador", "jogador2");
-            json.put("botao", botao.getName());
             pub.postar("canal", botao.getName());
             JogadorAtivo();
         }
     }
 
-    
-    
     private void threadSub() {
         sub.setupSubscriber();
         Thread t = new Thread(new Runnable() {
@@ -569,21 +565,12 @@ public class JogoDaVelha extends javax.swing.JFrame {
             public void run() {
                 while (true) {
                     String msg = sub.getMsg();
-                    json = new JSONObject(sub.getMsg());
-                    if(json.get("jogador").equals("jogador1")){
-                        Jogador1Ativo = false;
-                        marcarBotao(json.getString("botao"));
-                        repaint();
-                    }else{
-                        if (json.get("jogador").equals("jogador2")){
-                            Jogador2Ativo = false;
-                            marcarBotao(json.getString("botao"));
-                            repaint();
+                    if (msg != null) {
+                        if (!msg.equals(sub.getMsg())) {
+                            System.out.println(msg);
                         }
+                        System.out.println(msg);
                     }
-                    System.out.println(msg);
-                    System.out.println(json.toString());
-                    System.out.println("Jogador = " + json.get("jogador") + " botao = " + json.getString("botao") );
                 }
             }
         });
