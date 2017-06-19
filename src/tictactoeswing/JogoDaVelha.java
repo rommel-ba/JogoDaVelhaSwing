@@ -21,8 +21,11 @@ public class JogoDaVelha extends javax.swing.JFrame {
     private JediSubscriber sub;
     private JSONObject json;
     private Jogada jogada;
+    private static String minhaJogada;
+    private static String msg;
 
     public JogoDaVelha() {
+        minhaJogada = "inicio";
         sub = new JediSubscriber();
         sub.setupSubscriber();
         pub = new JediPublisher();
@@ -174,6 +177,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Empate!");
             LimparCampos();
         }
+        System.exit(0);
     }
 
     public void LimparCampos() {
@@ -195,6 +199,9 @@ public class JogoDaVelha extends javax.swing.JFrame {
         B8.setEnabled(true);
         B9.setText("");
         B9.setEnabled(true);
+        minhaJogada = "novo";
+        msg = "novo";
+        
 
         Jogador1Ativo = true;
         Jogador2Ativo = false;
@@ -563,13 +570,16 @@ public class JogoDaVelha extends javax.swing.JFrame {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
+//                String msg = "vazio";
                 while (true) {
-                    String msg = sub.getMsg();
+                    msg = sub.getMsg();
+                    System.out.println(msg);
                     if (msg != null) {
-                        if (!msg.equals(sub.getMsg())) {
-                            System.out.println(msg);
+                        if (!minhaJogada.equals(msg)) {
+                            System.out.println("jogada diferente");
+                            marcarBotao(msg);
+                            repaint();
                         }
-                        System.out.println(msg);
                     }
                 }
             }
