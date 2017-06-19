@@ -132,16 +132,55 @@ public class JogoDaVelha extends javax.swing.JFrame {
                 Vencedor("Jogador 2");
         }
         
+        //Verificação de empate
+        
+        if(!B1.getText().equals("") &&
+              !B2.getText().equals("") &&
+              !B3.getText().equals("") &&
+              !B4.getText().equals("") &&
+              !B5.getText().equals("") &&
+              !B6.getText().equals("") &&
+              !B7.getText().equals("") &&
+              !B8.getText().equals("") &&
+              !B9.getText().equals("") ){
+            
+            Vencedor("Empate");
+        
+        }
+        
        
     }
     
     public void Vencedor(String JogadorVencedor){
         if (JogadorVencedor.equals("Jogador 1")){
             JOptionPane.showMessageDialog(null, "Parabéns, Jogador 1");
+            LimparCampos();
             
         } else if(JogadorVencedor.equals("Jogador 2")){
-            JOptionPane.showMessageDialog(null, "Parabéns, Jogador 1");
+            JOptionPane.showMessageDialog(null, "Parabéns, Jogador 2");
+            LimparCampos();
         }
+        
+        if(JogadorVencedor.equals("Empate")){
+            JOptionPane.showMessageDialog(null, "Empate!");
+            LimparCampos();
+        }
+    }
+    
+    public void LimparCampos(){
+        B1.setText("");
+        B2.setText("");
+        B3.setText("");
+        B4.setText("");
+        B5.setText("");
+        B6.setText("");
+        B7.setText("");
+        B8.setText("");
+        B9.setText("");
+        
+        Jogado1Ativo = true;
+        Jogado2Ativo = false;
+        
     }
     
     /**
