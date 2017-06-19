@@ -5,6 +5,8 @@
  */
 package tictactoeswing;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jeiso
@@ -18,9 +20,130 @@ public class JogoDaVelha extends javax.swing.JFrame {
         initComponents();
     }
 
+   /*
+      * Jogador somente clica uma vez para inserir o seu símbolo.
+      * Segundo clique mostra o outro símbolo
+    */
     public void JogadorAtivo() {
+        if (Jogado1Ativo == true){
+            Jogado1Ativo = false;
+            Jogado2Ativo = true;
+        } else {
+            Jogado1Ativo = true;
+            Jogado2Ativo = false;
+        }
         
+        JogadorVencedor("X");
+        JogadorVencedor("O");
     }
+    
+    public void JogadorVencedor(String Jogador){
+        
+        //Verificação de linhas (horizontal)
+        if (B1.getText().equals(Jogador) &&
+                B2.getText().equals(Jogador) &&
+                B3.getText().equals(Jogador)) {
+            
+            if (B1.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        if (B4.getText().equals(Jogador) &&
+                B5.getText().equals(Jogador) &&
+                B6.getText().equals(Jogador)) {
+            
+            if (B4.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        if (B7.getText().equals(Jogador) &&
+                B8.getText().equals(Jogador) &&
+                B9.getText().equals(Jogador)) {
+            
+            if (B7.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        // Verificação vertical
+        
+        if (B1.getText().equals(Jogador) &&
+                B4.getText().equals(Jogador) &&
+                B7.getText().equals(Jogador)) {
+            
+            if (B1.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        if (B2.getText().equals(Jogador) &&
+                B5.getText().equals(Jogador) &&
+                B8.getText().equals(Jogador)) {
+            
+            if (B2.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        if (B3.getText().equals(Jogador) &&
+                B6.getText().equals(Jogador) &&
+                B9.getText().equals(Jogador)) {
+            
+            if (B3.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        // Verificação diagonal
+        
+        if (B1.getText().equals(Jogador) &&
+                B5.getText().equals(Jogador) &&
+                B9.getText().equals(Jogador)) {
+            
+            if (B1.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+        if (B7.getText().equals(Jogador) &&
+                B5.getText().equals(Jogador) &&
+                B3.getText().equals(Jogador)) {
+            
+            if (B7.getText().equals("X")){
+                Vencedor("Jogador 1");
+            }           
+            else
+                Vencedor("Jogador 2");
+        }
+        
+       
+    }
+    
+    public void Vencedor(String JogadorVencedor){
+        if (JogadorVencedor.equals("Jogador 1")){
+            JOptionPane.showMessageDialog(null, "Parabéns, Jogador 1");
+            
+        } else if(JogadorVencedor.equals("Jogador 2")){
+            JOptionPane.showMessageDialog(null, "Parabéns, Jogador 1");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,54 +177,63 @@ public class JogoDaVelha extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        B7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B7ActionPerformed(evt);
             }
         });
 
+        B1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B1ActionPerformed(evt);
             }
         });
 
+        B6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B6ActionPerformed(evt);
             }
         });
 
+        B2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B2ActionPerformed(evt);
             }
         });
 
+        B4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B4ActionPerformed(evt);
             }
         });
 
+        B3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B3ActionPerformed(evt);
             }
         });
 
+        B5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B5ActionPerformed(evt);
             }
         });
 
+        B9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B9ActionPerformed(evt);
             }
         });
 
+        B8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         B8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B8ActionPerformed(evt);
@@ -291,10 +423,11 @@ public class JogoDaVelha extends javax.swing.JFrame {
                 B3.setText("O");
                 JogadorAtivo();
             }
-        }
-        
+            
+        }      
     }//GEN-LAST:event_B3ActionPerformed
 
+    
     private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
         if (Jogado1Ativo == true){
             if (B2.getText().equals("")){
