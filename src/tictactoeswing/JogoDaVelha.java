@@ -357,7 +357,7 @@ public class JogoDaVelha extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Controle do Jogo"));
 
-        NovoJogo.setText("Novo");
+        NovoJogo.setText("Novo Jogo");
         NovoJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NovoJogoActionPerformed(evt);
@@ -444,11 +444,11 @@ public class JogoDaVelha extends javax.swing.JFrame {
     }//GEN-LAST:event_B1ActionPerformed
 
     private void NovoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovoJogoActionPerformed
-        // TODO add your handling code here:
+        LimparCampos();
     }//GEN-LAST:event_NovoJogoActionPerformed
 
     private void SairDoJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairDoJogoActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_SairDoJogoActionPerformed
 
     private void B3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B3ActionPerformed
