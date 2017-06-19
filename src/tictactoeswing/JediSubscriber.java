@@ -15,7 +15,7 @@ public class JediSubscriber {
             public void onMessage(String channel, String message) {
                 super.onMessage(channel, message);
                 msg = message;
-                System.out.println(msg);
+//                System.out.println(msg);
                 if(status.equals("sair"))
                     System.exit(0);
             }

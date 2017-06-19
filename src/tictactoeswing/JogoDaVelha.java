@@ -7,6 +7,7 @@ package tictactoeswing;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import org.json.JSONObject;
 
 /**
  *
@@ -14,16 +15,22 @@ import javax.swing.JOptionPane;
  */
 public class JogoDaVelha extends javax.swing.JFrame {
 
-    private boolean Jogado1Ativo = true;
-    private boolean Jogado2Ativo = false;
+    private boolean Jogador1Ativo = true;
+    private boolean Jogador2Ativo = false;
+    private JediPublisher pub;
+    private JediSubscriber sub;
+    private JSONObject json;
+    private Jogada jogada;
 
     public JogoDaVelha() {
         sub = new JediSubscriber();
         sub.setupSubscriber();
         pub = new JediPublisher();
         pub.setupPublisher();
+        json = new JSONObject();
+        jogada = new Jogada();
         initComponents();
-        System.out.println(B1.getName());
+        threadSub();
     }
 
     /*
@@ -31,12 +38,12 @@ public class JogoDaVelha extends javax.swing.JFrame {
       * Segundo clique mostra o outro símbolo
      */
     public void JogadorAtivo() {
-        if (Jogado1Ativo == true) {
-            Jogado1Ativo = false;
-            Jogado2Ativo = true;
+        if (Jogador1Ativo == true) {
+            Jogador1Ativo = false;
+            Jogador2Ativo = true;
         } else {
-            Jogado1Ativo = true;
-            Jogado2Ativo = false;
+            Jogador1Ativo = true;
+            Jogador2Ativo = false;
         }
 
         JogadorVencedor("X");
@@ -171,17 +178,26 @@ public class JogoDaVelha extends javax.swing.JFrame {
 
     public void LimparCampos() {
         B1.setText("");
+        B1.setEnabled(true);
         B2.setText("");
+        B2.setEnabled(true);
         B3.setText("");
+        B3.setEnabled(true);
         B4.setText("");
+        B4.setEnabled(true);
         B5.setText("");
+        B5.setEnabled(true);
         B6.setText("");
+        B6.setEnabled(true);
         B7.setText("");
+        B7.setEnabled(true);
         B8.setText("");
+        B8.setEnabled(true);
         B9.setText("");
+        B9.setEnabled(true);
 
-        Jogado1Ativo = true;
-        Jogado2Ativo = false;
+        Jogador1Ativo = true;
+        Jogador2Ativo = false;
 
     }
 
@@ -484,30 +500,90 @@ public class JogoDaVelha extends javax.swing.JFrame {
         jogada(B9);
     }//GEN-LAST:event_B9ActionPerformed
 
+    private void marcarBotao(String botao){
+        switch (botao){
+            case"B1":{
+                jogada(B1);
+                break;
+            }
+            case"B2":{
+                jogada(B2);
+                break;
+            }
+            case"B3":{
+                jogada(B3);
+                break;
+            }
+            case"B4":{
+                jogada(B4);
+                break;
+            }
+            case"B5":{
+                jogada(B5);
+                break;
+            }
+            case"B6":{
+                jogada(B6);
+                break;
+            }
+            case"B7":{
+                jogada(B7);
+                break;
+            }
+            case"B8":{
+                jogada(B8);
+                break;
+            }
+            case"B9":{
+                jogada(B9);
+                break;
+            }
+        }
+    }
+    
     private void jogada(JButton botao) {
-        if (Jogado1Ativo == true) {
+        if (Jogador1Ativo == true) {
             if (botao.getText().equals("")) {
                 botao.setText("X");
+                botao.setEnabled(false);
                 pub.postar("canal", botao.getName());
                 JogadorAtivo();
 
             }
         } else if (botao.getText().equals("")) {
             botao.setText("O");
+            botao.setEnabled(false);
+            json.put("jogador", "jogador2");
+            json.put("botao", botao.getName());
             pub.postar("canal", botao.getName());
             JogadorAtivo();
         }
     }
 
+    
+    
     private void threadSub() {
         sub.setupSubscriber();
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-//                System.out.println("Teste Thread");
                 while (true) {
                     String msg = sub.getMsg();
+                    json = new JSONObject(sub.getMsg());
+                    if(json.get("jogador").equals("jogador1")){
+                        Jogador1Ativo = false;
+                        marcarBotao(json.getString("botao"));
+                        repaint();
+                    }else{
+                        if (json.get("jogador").equals("jogador2")){
+                            Jogador2Ativo = false;
+                            marcarBotao(json.getString("botao"));
+                            repaint();
+                        }
+                    }
                     System.out.println(msg);
+                    System.out.println(json.toString());
+                    System.out.println("Jogador = " + json.get("jogador") + " botao = " + json.getString("botao") );
                 }
             }
         });
@@ -570,6 +646,4 @@ public class JogoDaVelha extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
-    private JediPublisher pub;
-    private JediSubscriber sub;
 }
